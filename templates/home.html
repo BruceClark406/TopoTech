@@ -1,4 +1,36 @@
 {% extends "./layout.html" %}
 
 {% block content %}
-<h1>Well, can we get this to work </h1>
+<script>
+    var this_nav = document.querySelectorAll("a[href='../']");
+    this_nav[0].parentElement.classList.add('active');
+</script>
+
+<div class="row" style="height:90%;">
+
+    <div class="col-lg-12 col-md-12 col-s-12 col-xs-12">
+        <div style="margin-top: 10px; padding-right:10px;">
+            <button onclick="drawRec();" class="btn btn-success" id="drawRec">Draw Rectangle</button>
+            <button onclick="clearRec();" class="btn btn-success">Clear Rectangle</button>
+            <!--<a href="\object_viewer">-->
+            <button onclick="generateModel()" class="btn btn-success" type="submit">Generate</button>
+            <!--</a>-->
+
+        </div>
+        
+    
+        <div id="map"></div>
+        <!--initializes map and has functions for drawing-->
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPklbA7Rlz_7FQhBJ4upMd5QR6wpdD1co&callback=initMap"
+            async defer></script>
+        <script src="{{url_for('static', filename='./js/googleMaps.js')}}" type="text/javascript"></script>
+    
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}
