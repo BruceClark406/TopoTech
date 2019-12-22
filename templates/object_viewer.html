@@ -1,0 +1,89 @@
+{% extends "./layout.html" %}
+
+{% block content %}
+		<div id='test'>
+			<p>Hello World</p>
+		</div>
+		<script src="{{ url_for('static', filename='js/three.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/three.OBJLoader.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/three.OrbitControls.js') }}"></script>
+		<script>
+			var this_nav = document.querySelectorAll("a[href='./object_viewer']");
+			this_nav[0].parentElement.classList.add('active');
+
+			var section = document.getElementsByClassName('container-fluid')[0];
+			//document.getElementById('test').innerHTML =(section.offsetWidth/section.offsetHeight);
+
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( section.offsetWidth*.9, window.innerHeight*.8 );
+			section.appendChild( renderer.domElement );
+
+			var light = new THREE.DirectionalLight(0xffffffff, 1);
+			light.position.set(0, 10, 0);
+			light.target.position.set(-5, 0, 0);
+			scene.add(light);
+			scene.add(light.target);
+
+			const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  		controls.target.set(0, 0, 0);
+  		controls.update();
+
+			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			var material = new THREE.MeshPhongMaterial({color: '#8AC'});
+			//var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			var cube = new THREE.Mesh( geometry, material );
+			//cube.position.z = -10;
+			//document.getElementById('test').innerHTML = "<img src={{ url_for('static', filename='images/ashleyLake.png') }}>"
+			var loader = new THREE.OBJLoader();
+			loader.load("{{ url_for('static', filename='images/bridgers.obj') }}", function(object){
+				//document.getElementById('test').innerHTML = "<img src={{ url_for('static', filename='images/ashleyLake.png') }}>"
+
+				object.rotation.y = 1;
+				//object.scale = Vector3(10,10,10);
+				//object.position.x = 0;
+				//object.position.y = 0;
+				//object.position.z = 0;
+				//object.scale.x = 10;
+				//object.scale.y = 100;
+				//object.scale.z = 100;
+
+		    object.traverse( function ( child ) {
+
+		        if ( child instanceof THREE.Mesh ) {
+
+		            child.material = material;
+
+		        }
+
+		    } );
+
+		    scene.add( object );
+				return object;
+
+			});
+
+
+			cube.scale.x = .1;
+			cube.scale.y = .1;
+			cube.scale.z = .1;
+			cube.position.y = .1;
+			//scene.add( cube );
+
+			camera.position.z = .5;
+			//camera.position.x = -1;
+
+			var animate = function () {
+				requestAnimationFrame( animate );
+
+				cube.rotation.y += 0.01;
+
+				renderer.render( scene, camera );
+			};
+
+			animate();
+		</script>
+
+{% endblock %}
