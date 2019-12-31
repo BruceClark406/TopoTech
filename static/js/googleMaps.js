@@ -43,13 +43,11 @@ var rectangle;
 
     function generateModel(){
 
-
         rect_bounds = rectangle.getBounds()
         north = rect_bounds.pa.h
         east = rect_bounds.ka.h
         south = rect_bounds.pa.g
         west = rect_bounds.ka.g
-
 
         //north, east, south, west
         //desired_coordinates = [45.8683101144738, -110.81068980284495, 45.6683101144738, -111.01068980284494]
