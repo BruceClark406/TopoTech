@@ -24,7 +24,7 @@ def download():
 @app.route('/generate', methods=["GET", "POST"])
 def generate():
     coordinates = request.form
-    main.main(coordinates)
+    elevations = main.main(coordinates)
     return "Bruce"
 
 if __name__ == "__main__":

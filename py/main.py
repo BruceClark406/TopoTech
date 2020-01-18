@@ -1,8 +1,12 @@
 from py import Open_Topo
+from py import Image_Array
 
 
 def main(coordinates: dict):
-    Open_Topo.get_tiff(coordinates)
+    url = Open_Topo.get_tiff(coordinates)
+    img = Image_Array.open_images_from_url(url)
+    img_array = Image_Array.tiff_to_array_1d(img)
+    return img_array
 
 
 if __name__ == "__main__":
