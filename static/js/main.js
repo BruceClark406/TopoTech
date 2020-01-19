@@ -2,8 +2,6 @@
 
 
 function build(elevations1d){
-
-    console.log("we got here 5:54")
     
     
 
@@ -70,8 +68,6 @@ function build(elevations1d){
 
 
 
-
-
 function stringToArray(elevations){
     elevations = elevations.substr(1, elevations.length-2)
     elevations = elevations.split(",")
@@ -89,10 +85,10 @@ function generateModel(){
     "south": rect_bounds.pa.g,
     "west": rect_bounds.ka.g
     }
-    console.log(rect_bounds.pa.h)
 
     let elevations
 
+    //post the coordinates to URL /generate
     $.ajax({
         url: "generate",
         type: "POST",
@@ -105,9 +101,5 @@ function generateModel(){
             console.log(error);
         }
     })
-
-    console.log("here 603")
-    build(elevations)
-
 
 }
