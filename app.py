@@ -25,7 +25,7 @@ def download():
 def generate():
     coordinates = request.form
     elevations = main.main(coordinates)
-    return "Bruce"
+    return str(elevations)
 
 if __name__ == "__main__":
     app.run()
