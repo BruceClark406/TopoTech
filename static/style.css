@@ -127,6 +127,12 @@ ul ul a {
     margin-top: 2%;
 }
 
+#homeButtons{
+    margin-top: 10px;
+    padding-right:10px;
+}
+
+
 .btn-success {
     background: rgb(84,130,53);
 }
