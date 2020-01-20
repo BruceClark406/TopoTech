@@ -1,21 +1,3 @@
-
-/*
-body {
-    background: url('./images/background.png') no-repeat center center fixed;
-    background-size: cover;
-
-    padding: 0;
-    margin: 0;
-
-    color: #191814;
-    font-family: Tahoma;
-
-
-  }
-*/
-
-
-
 .wrapper {
     display: flex;
     width: 100%;
@@ -138,6 +120,13 @@ ul ul a {
     margin-top: 10px;
 }
 
+#object_viewer_div{
+    height: 95%;
+    width: 90%;
+    margin: auto;
+    margin-top: 2%;
+}
+
 .btn-success {
     background: rgb(84,130,53);
 }
@@ -146,6 +135,7 @@ ul ul a {
     background: rgb(82, 82, 82);
 }
 .btn-success[disabled] {
-    background: none;
-    color: rgb(84,130,53);
+    background: rgb(117, 117, 117);
+    color: rgb(43, 43, 43);
 }
+

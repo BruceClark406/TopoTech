@@ -2,22 +2,23 @@
 
 {% block content %}
 
-<script>
-    var this_nav = document.querySelectorAll("a[href='../']");
-    this_nav[0].parentElement.classList.add('active');
-</script>
 
 <div class="row" style="height:90%;">
 
     <div class="col-lg-12 col-md-12 col-s-12 col-xs-12">
         <div style="margin-top: 10px; padding-right:10px;">
-            <button onclick="drawRec();" class="btn btn-success" id="drawRec">Draw Rectangle</button>
-            <button onclick="clearRec();" class="btn btn-success">Clear Rectangle</button>
-            <!--<a href="./object_viewer">-->
-            <!--call generateModel in main.js-->
-            <button onclick="saveCoordinates()" class="btn btn-success" type="submit">Generate</button>
-            <!--</a>-->
-
+            <div class="btn-group">
+                <button onclick="drawRec();" class="btn btn-success" id="drawRec">Draw Rectangle</button>
+                <button onclick="clearRec();" class="btn btn-success">Clear Rectangle</button>
+            </div>
+            
+            
+            <div class="btn-group">
+                <button onclick="saveCoordinates()" class="btn btn-success" type="submit" id="confirm">Confirm</button>
+                <a href="./object_viewer">
+                    <button class="btn btn-success" id="generate">Generate</button>
+                </a>
+            </div>
         </div>
         
     
@@ -29,8 +30,12 @@
     </div>
 </div>
 
-
-
-
+<script>
+    var this_nav = document.querySelectorAll("a[href='../']");
+    this_nav[0].parentElement.classList.add('active');
+    document.getElementById("confirm").disabled = true;
+    document.getElementById("generate").disabled = true;
+</script>
+    
 
 {% endblock %}
