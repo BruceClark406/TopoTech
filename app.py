@@ -5,7 +5,7 @@ from py import main
 
 app = Flask(__name__)
 app.debug = True
-
+coordinates = [0,0,0,0]
 
 
 @app.route('/')
@@ -15,17 +15,27 @@ def index():
 
 @app.route('/object_viewer')
 def object_viewer():
-    return render_template('object_viewer.html')
+    if coordinates == [0,0,0,0]:
+        return render_template('no_coordinates.html')
+    else:
+        print(coordinates)
+        return render_template('object_viewer.html')
 
 @app.route('/download')
 def download():
     return send_from_directory('./static/images', filename='bridgers.obj', as_attachment=True)
 
-@app.route('/generate', methods=["GET", "POST"])
-def generate():
+@app.route('/set_coordinates', methods=["GET", "POST"])
+def set_coordinates():
+    global coordinates
     coordinates = request.form
-    elevations = main.main(coordinates)
-    return str(elevations)
+    return "success"
+
+@app.route('/get_coordinates', methods=["GET", "POST"])
+def get_coordinates():
+    elevations_with_shape = main.main(coordinates)
+    return str(elevations_with_shape)
+
 
 if __name__ == "__main__":
     app.run()

@@ -5,8 +5,7 @@ from PIL import Image
 from io import BytesIO
 
 
-def tiff_to_array_1d(img: Image) -> list:
-    img_array = np.array(img)
+def numpy_to_1d_list(img_array: np.ndarray) -> list:
     img_array = img_array.flatten()
     img_array = img_array.tolist()
     return img_array
@@ -26,8 +25,8 @@ def tiff_to_jpg(img: Image) -> Image:
 
     img = Image.fromarray(img_array, mode="I")
     img = img.convert("RGB")
-    # name = datetime.datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
     img.show(img)
+    # name = datetime.datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
     # img.save(str(name) + ".jpg")
 
 
@@ -35,3 +34,11 @@ def open_images_from_url(url: str) -> Image:
     image = requests.get(url)
     image = Image.open(BytesIO(image.content))
     return image
+
+
+def tiff_to_array(img: Image) -> list:
+    return np.array(img)
+
+
+def get_shape(img_array: np.ndarray) -> tuple:
+    return img_array.shape
