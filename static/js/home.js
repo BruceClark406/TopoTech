@@ -1,9 +1,9 @@
 let map;
 let rectangle;
+let cust_bounds;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        mapTypeId: 'satellite',
         center: { lat: 45.743438, lng: -110.967997 },
         streetViewControl: false,
         zoom: 8,
@@ -16,18 +16,17 @@ function drawRec(){
     let center = map.getCenter();
     let sizeOfRec = .1
 
-    let bounds = {
+    cust_bounds = {
         north: center.lat() + sizeOfRec,
         south: center.lat() - sizeOfRec,
         east: center.lng() + sizeOfRec,
         west: center.lng() - sizeOfRec
     };
 
-    let bound = map.getCenter();
 
     // Define a rectangle and set its editable property to true.
     rectangle = new google.maps.Rectangle({
-        bounds: bounds,
+        bounds: cust_bounds,
         editable: true,
         draggable: true
     });
@@ -47,34 +46,30 @@ function clearRec(){
 function saveCoordinates(){
     rect_bounds = rectangle.getBounds()
 
-    let bounds = {
+    bounds = {
         north: rect_bounds.Ya.i,
         south: rect_bounds.Ya.g,
         east: rect_bounds.Ta.i,
         west: rect_bounds.Ta.g
     };
 
-    clearRec()
+    rectangle.setMap(null)
+
     rectangle = new google.maps.Rectangle({
-        bounds: bounds,
+        bounds: cust_bounds,
         editable: false,
         draggable: false,
         strokeColor: '#ff6f08',
-        strokeOpacity: .5,
+        strokeOpacity: .5
     });
     rectangle.setMap(map)
-    
-    
-    
-    rect_bounds = rectangle.getBounds()
-
-    
+       
 
     //post the coordinates to URL /generate
     $.ajax({
         url: "set_coordinates",
         type: "POST",
-        data: bounds,
+        data: cust_bounds,
         async: false,
         error: function(error){
             console.log(error);
@@ -83,5 +78,4 @@ function saveCoordinates(){
 
     document.getElementById("generate").disabled = false;
     document.getElementById("drawRec").disabled = true;
-
 }
