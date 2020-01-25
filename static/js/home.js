@@ -46,11 +46,12 @@ function clearRec(){
 
 function saveCoordinates(){
     rect_bounds = rectangle.getBounds()
+
     let bounds = {
-        north: rect_bounds.pa.h,
-        south: rect_bounds.pa.g,
-        east: rect_bounds.ka.h,
-        west: rect_bounds.ka.g
+        north: rect_bounds.Ya.i,
+        south: rect_bounds.Ya.g,
+        east: rect_bounds.Ta.i,
+        west: rect_bounds.Ta.g
     };
 
     clearRec()
@@ -67,18 +68,13 @@ function saveCoordinates(){
     
     rect_bounds = rectangle.getBounds()
 
-    coordinates = {
-        "north": rect_bounds.pa.h,
-        "east": rect_bounds.ka.h,
-        "south": rect_bounds.pa.g,
-        "west": rect_bounds.ka.g
-    }   
+    
 
     //post the coordinates to URL /generate
     $.ajax({
         url: "set_coordinates",
         type: "POST",
-        data: coordinates,
+        data: bounds,
         async: false,
         error: function(error){
             console.log(error);
