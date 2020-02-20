@@ -15,11 +15,10 @@ def index():
 
 @app.route('/object_viewer')
 def object_viewer():
-    if coordinates == [0,0,0,0]:
-        return render_template('no_coordinates.html')
-    else:
-        print(coordinates)
-        return render_template('object_viewer.html')
+    # if coordinates == [0,0,0,0]:
+    #     return render_template('no_coordinates.html')
+    # else:
+    return render_template('object_viewer.html')
 
 @app.route('/download')
 def download():

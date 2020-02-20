@@ -13,7 +13,7 @@ function build(elevations1d){
             console.log(error);
         }
     });
-    /*
+
     //get rid of parentheses sourounding shape
     let width = elevations[elevations.length-1]
     width = parseInt(width.replace(")", ""))
@@ -103,7 +103,7 @@ function build(elevations1d){
     }   
 
     animate()
-    */
+
 }
 
 function stringToNumArray(elevations){

@@ -77,5 +77,6 @@ function saveCoordinates(){
     })
 
     document.getElementById("generate").disabled = false;
+    document.getElementById("confirm").disabled = true;
     document.getElementById("drawRec").disabled = true;
 }
