@@ -46,7 +46,7 @@ function clearRec(){
 function saveCoordinates(){
     rect_bounds = rectangle.getBounds()
 
-    bounds = {
+    cust_bounds = {
         north: rect_bounds.Ya.i,
         south: rect_bounds.Ya.g,
         east: rect_bounds.Ta.i,
