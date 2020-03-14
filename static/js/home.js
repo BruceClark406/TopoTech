@@ -46,12 +46,16 @@ function clearRec(){
 function saveCoordinates(){
     rect_bounds = rectangle.getBounds()
 
+    let ne = rect_bounds.getNorthEast();
+    let sw = rect_bounds.getSouthWest();
+
     cust_bounds = {
-        north: rect_bounds.Ya.i,
-        south: rect_bounds.Ya.g,
-        east: rect_bounds.Ta.i,
-        west: rect_bounds.Ta.g
+        north: ne.lat(),
+        south: sw.lat(),
+        east: ne.lng(),
+        west: sw.lng()
     };
+
 
     rectangle.setMap(null)
 
