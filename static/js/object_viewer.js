@@ -1,6 +1,6 @@
 
 function build(elevations1d){
-    let elevations
+    let elevations = null
     //gets coordinates and then returns elevations
     $.ajax({
         url: "get_coordinates",
@@ -13,6 +13,12 @@ function build(elevations1d){
             console.log(error);
         }
     });
+
+    while (elevations == null){
+        console.out("waiting1")
+        await sleep(1000);
+    }
+
 
     //get rid of parentheses sourounding shape
     let width = elevations[elevations.length-1]
