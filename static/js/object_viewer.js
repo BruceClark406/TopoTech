@@ -16,7 +16,6 @@ function build(elevations1d){
 
     while (elevations == null){
         console.out("waiting1")
-        await sleep(1000);
     }
 
 
