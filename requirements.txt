@@ -8,7 +8,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.3
 MarkupSafe==1.1.1
 numpy==1.18.1
-Pillow==6.2.1
+Pillow==9.0.0
 public==2019.4.13
 requests==2.22.0
 urllib3==1.25.7
